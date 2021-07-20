@@ -1,0 +1,110 @@
+
+<Container>:
+    orientation: 'vertical'
+    padding: [3,3,3,3]
+    text_input: text_input
+    label_copy_link: label_copy_link
+    label_product_name: label_product_name
+    label_product_price: label_product_price
+    label_min_price: label_min_price
+    text_input_Url: text_input_Url
+
+
+    MDBottomNavigation:
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Избранное'
+            icon: 'star-outline'
+
+            MDLabel:
+                text: 'Модуль в разработке'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Поиск'
+            icon: 'card-search-outline'
+            MDBoxLayout:
+                #md_bg_color: app.theme_cls.primary_color
+                pos_hint: {"center_x": 0.5, "center_y": 1}
+                size_hint_y: 0.2
+                rows: 2
+                MDTextField:
+                    id: text_input
+                    hint_text: 'Найти'
+                    helper_text_mode: 'on_focus'
+                    helper_text: 'Вставьте ссылку на продукт'
+                    pos_hint: {"center_x": .2, "center_y": 0.15}
+                MDIconButton:
+                    icon: 'card-search-outline'
+                    user_font_size: "30sp"
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+                    pos_hint: {"center_x": .5, "center_y": 0.15}
+                    on_press:
+                        root.checkPrice()
+
+
+            MDRectangleFlatButton:
+                id: text_input_Url
+                text: 'Скопировать ссылку'
+                disabled: True
+                multiline: False
+                text_color: app.theme_cls.primary_color
+                md_bg_color: 1, 1, 0, 1
+                pos_hint: {'center_x': .5, 'center_y': 0.1}
+                on_release:
+                    root.copyProductLink()
+
+            AnchorLayout:
+                pos_hint: {'center_x': .5, 'center_y': 0.6}
+                MDLabel:
+                    id: label_product_name
+                    text: ''
+                    font_size: 24
+                    halign: 'center'
+                    theme_text_color: "Custom"
+                    text_color: (21/255, 88/255, 143/255, 1)
+
+            AnchorLayout:
+                pos_hint: {'center_x': .5, 'center_y': 0.4}
+                MDLabel:
+                    id: label_product_price
+                    text: ''
+                    font_size: 24
+                    halign: 'center'
+                    theme_text_color: "Custom"
+                    text_color: (206/255, 205/255, 65/255, 1)
+
+            AnchorLayout:
+                pos_hint: {'center_x': .5, 'center_y': 0.3}
+                MDLabel:
+                    id: label_min_price
+                    text: ''
+                    font_size: 12
+                    halign: 'center'
+                    theme_text_color: "Custom"
+                    text_color: (206/255, 205/255, 65/255, 1)
+
+            AnchorLayout:
+                pos_hint: {'center_x': 4, 'center_y': 4}
+                MDLabel:
+                    id: label_copy_link
+                    text:''
+                    font_size: 1
+                    halign: 'center'
+
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'Настройки'
+            icon: 'cog-outline'
+            AnchorLayout:
+                anchor_y: 'center'
+                anchor_x: 'center'
+                MDRectangleFlatButton:
+                    text: "Обновить курс"
+                    text_color: app.theme_cls.primary_color
+                    md_bg_color: 1, 1, 0, 1
+                    on_release:
+                        root.updateRate()
